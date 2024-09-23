@@ -12,63 +12,67 @@ namespace BaiTap_L0_TranCaoCuong.Utility
     {
         public static void CheckName(string name)
         {
-            if (string.IsNullOrEmpty(name) || name.Length > Const.NameLength_max)
+            if (string.IsNullOrEmpty(name) || name.Length > ConstantsLimit.NameLengtmax)
             {
-                throw new ArgumentNullException($"Minimum name from one to{Const.NameLength_max} characters.");
+                throw new ArgumentNullException($"Minimum name from one to{ConstantsLimit.NameLengtmax} characters.");
             }
         }
 
         public static void CheckDob(DateTime dob)
         {
-            if (dob.Year < Const.Year_min)
+            if (dob.Year < ConstantsLimit.Yearmin)
             {
-                throw new ArgumentNullException($"Minimum year of birth from year {Const.Year_min}.");
+                throw new ArgumentNullException($"Minimum year of birth from year {ConstantsLimit.Yearmin}.");
             }
         }
 
         public static void CheckHeight(float height)
         {
-            if (height < Const.Height_min || height > Const.Height_max)
+            if (height < ConstantsLimit.Heightmin || height > ConstantsLimit.Heightmax)
             {
-                throw new ArgumentNullException($"Minimum height from {Const.Height_min} and {Const.Height_max}.");
+                throw new ArgumentNullException($"Minimum height from {ConstantsLimit.Heightmin} and {ConstantsLimit.Heightmax}.");
             }
         }
 
         public static void CheckWeight(float weight)
         {
-            if (weight < Const.weight_min || weight > Const.weight_max)
+            if (weight < ConstantsLimit.weightmin || weight > ConstantsLimit.weightmax)
             {
-                throw new ArgumentNullException($"Weight ranges from {Const.weight_min} to {Const.weight_max}.");
+                throw new ArgumentNullException($"Weight ranges from {ConstantsLimit.weightmin} to {ConstantsLimit.weightmax}.");
             }
         }
 
         public static void CheckIdStudent(string id)
         {
-            if (string.IsNullOrWhiteSpace(id) || id.Length != Const.Student_id)
-                throw new ArgumentException($"Student ID {Const.Student_id} characters.");
+            if (string.IsNullOrWhiteSpace(id) || id.Length != ConstantsLimit.StudentIdLength)
+                throw new ArgumentException($"Student ID {ConstantsLimit.StudentIdLength} characters.");
         }
 
         public static void CheckNameSchool(string schoolName)
         {
-            if (string.IsNullOrEmpty(schoolName) || schoolName.Length >= Const.School_Name_max)
-                throw new ArgumentException($"Current school must be less than {Const.School_Name_max} characters.");
+            if (string.IsNullOrEmpty(schoolName) || schoolName.Length >= ConstantsLimit.SchoolNamemax)
+                throw new ArgumentException($"Current school must be less than {ConstantsLimit.SchoolNamemax} characters.");
         }
 
         public static void CheckStartLearning(int year)
         {
-            if (year <= Const.YearSchool_max) throw new ArgumentException($"The year of starting university must be from {Const.YearSchool_max}.");
+            if (year <= ConstantsLimit.YearSchoolmax) throw new ArgumentException($"The year of starting university must be from {ConstantsLimit.YearSchoolmax}.");
         }
 
-        public static void CheckAvg(double gpa)
+        public static bool CheckAvg(double avg)
         {
-            if (gpa < Const.Avg_min || gpa > Const.Avg_max)
-                throw new ArgumentException($"The average score must be within the range {Const.Avg_min} to {Const.Avg_max}.");
+            //if (avg < Const.Avg_min)
+            //    return false;
+            //if (avg > Const.Avg_max)
+            //    return false;
+            //return true;
+            return avg >= ConstantsLimit.Avgmin && avg <= ConstantsLimit.Avgmax;
         }
         public static void CheckAddress(string address)
         {
-            if (string.IsNullOrEmpty(address) || address.Length > Const.AddressLength_max)
+            if (string.IsNullOrEmpty(address) || address.Length > ConstantsLimit.AddressLengthmax)
             {
-                throw new ArgumentNullException($"Person name must be between 1 and {Const.AddressLength_max} characters.");
+                throw new ArgumentNullException($"Person name must be between 1 and {ConstantsLimit.AddressLengthmax} characters.");
             }
         }
     }

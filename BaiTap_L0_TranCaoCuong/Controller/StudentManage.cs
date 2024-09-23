@@ -34,7 +34,6 @@ namespace BaiTap_L0_TranCaoCuong.Controller
             while (true)
             {
                 studentId = inp.GetIdStudent();
-                //check dupplicate student id
                 if (_liststudent.Any(s => s.IdStudent.Equals(studentId, StringComparison.OrdinalIgnoreCase)))
                 {
                     Console.WriteLine("Student ID already exists. Please enter a different Student ID.");
@@ -53,16 +52,17 @@ namespace BaiTap_L0_TranCaoCuong.Controller
         public student GetStudentById()
         {
             string studentId = inp.GetIdStudent();
-            student student = _liststudent.SingleOrDefault(s => s.IdStudent == studentId);
-            if (student == null)
+
+            if (_liststudent.Any(s => s.IdStudent == studentId))
             {
-                Console.WriteLine($"Student ID not found: {studentId}");
-                return new student();
+                student student = _liststudent.First(s => s.IdStudent == studentId);
+                Console.WriteLine(student.ToString());
+                return student;
             }
             else
             {
-                Console.WriteLine(student.ToString());
-                return student;
+                Console.WriteLine($"Student ID not found: {studentId}");
+                return new student();
             }
         }
 
@@ -168,10 +168,16 @@ namespace BaiTap_L0_TranCaoCuong.Controller
                 return;
             }
 
-            var status = _liststudent.GroupBy(s => s.status).Select(group => new {
-                                                TypeAverage = group.Key,
-                                                Percent = (double)group.Count() / _liststudent.Count * 100
-                                            }).OrderByDescending(g => g.Percent).ToList();
+            var status = _liststudent
+                .GroupBy(s => s.status)
+                .Select(group => new
+                {
+                    TypeAverage = group.Key,
+                    Percent = (double)group.Count() / _liststudent.Count * 100
+                })
+                .OrderByDescending(g => g.Percent)
+                .ToList();
+
             foreach (var group in status)
             {
                 Console.WriteLine($"{group.TypeAverage}: {group.Percent:F1}%");

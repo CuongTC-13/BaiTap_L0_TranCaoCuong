@@ -11,7 +11,7 @@ namespace BaiTap_L0_TranCaoCuong.View
     {
         public static void Main(string[] args)
         {
-            StudentManage manager = new StudentManage();
+            StudentManage studentManage = new StudentManage();
             while (true)
             {
                 Console.WriteLine("\nChoose an option:");
@@ -31,31 +31,31 @@ namespace BaiTap_L0_TranCaoCuong.View
                 switch (choice)
                 {
                     case "1":
-                        manager.CreateStudent();
+                        studentManage.CreateStudent();
                         break;
                     case "2":
-                        manager.GetStudentById();
+                        studentManage.GetStudentById();
                         break;
                     case "3":
-                        manager.UpdateStudentById();
+                        studentManage.UpdateStudentById();
                         break;
                     case "4":
-                        manager.DeleteStudentById();
+                        studentManage.DeleteStudentById();
                         break;
                     case "5":
-                        manager.AllStudent();
+                        studentManage.AllStudent();
                         break;
                     case "6":
-                        manager.ShowAvg();
+                        studentManage.ShowAvg();
                         break;
                     case "7":
-                        manager.ShowStatus();
+                        studentManage.ShowStatus();
                         break;
                     case "8":
-                        manager.ShowListStudentsByAvg();
+                        studentManage.ShowListStudentsByAvg();
                         break;
                     case "9":
-                        manager.SaveToFile();
+                        studentManage.SaveToFile();
                         break;
                     case "0":
                         return;
